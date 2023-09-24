@@ -1,14 +1,30 @@
 package pl.javastart.validationtask;
 
+import jakarta.validation.constraints.*;
+
 public class RegisterFormDto {
 
+    @NotBlank(message = "Pole nie może być puste")
+    @Size(min=3, message = "Wpisz min 3 znaki")
     private String firstName;
+    @NotBlank(message = "Pole nie może być puste")
+    @Size(min=3, message = "Wpisz min 3 znaki")
     private String surname;
+    @NotBlank(message = "Pole nie może być puste")
     private String address;
+    @NotBlank(message = "Pole nie może być puste")
+    @Pattern(regexp = "^[0-9]{2}-[0-9]{3}$", message = "Wpisz poprawny kod pocztowy")
     private String postalCode;
+    @NotBlank(message = "Pole nie może być puste")
     private String city;
+    @NotBlank(message = "Pole nie może być puste")
+    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Podaj poprawnie sformatowany adres e-mail")
     private String email;
+    @NotBlank(message = "Pole nie może być puste")
+    @Size(min=8, message = "Hasło musi mieć co najmniej 8 znaków")
+    @Pattern(regexp= "^(?=(.*[A-Z]))(?=(.*[a-z]))(?=(.*[@#$%^!&+=.-_*]))([a-zA-Z@#$%^!&+=*.-_]){8,}$", message = "Hasło musi mieć co najmniej jeden znak duzy, jeden maly i jeden znak specjalny")
     private String password;
+    @AssertTrue(message = "Akceptacja regulaminu jest wymagana")
     private boolean termsAgreement;
 
     public String getFirstName() {
